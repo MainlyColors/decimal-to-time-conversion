@@ -97,10 +97,14 @@ h3 {
 }
 
 .result {
-  margin-top: 100px;
+  margin-top: 50px;
   color: var(--text-primary);
   font-size: 72px;
   font-weight: 700;
   padding: 40px 60px;
   border-radius: 50px;
+}
+
+section {
+  height: 100px;
 }

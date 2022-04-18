@@ -10,40 +10,34 @@ function createResultElement(output) {
 }
 
 const outputEl = document.querySelector('#output');
-function getFetch() {
-  const choice = document.querySelector('input').value;
 
-  if (choice.match(/[^0-9-.]+/g)?.length <= 0) {
-    document.querySelector('input').value = '';
-    alert(`can you not read? Numbers only 😂
-    
-    "${choice}" - does this look like a number to you???`);
-    return;
+function convertDecimalToTime(num) {
+  const hr = Math.trunc(num);
+  let min = Math.trunc((num - hr) * 60);
+  let sec = Math.floor(Math.round(((num - hr) * 60 - min) * 60));
+
+  // to handle rounding
+  if (sec === 60) {
+    min += 1;
+    sec = 0;
   }
 
-  const url = `https://api.isevenapi.xyz/api/iseven/${Math.abs(choice)}/`;
-
-  fetch(url)
-    .then((res) => res.json()) // parse response as JSON
-    .then((data) => {
-      console.log(data);
-      outputEl.innerHTML = '';
-
-      outputEl.appendChild(createResultElement(data.iseven));
-    })
-    .catch((err) => {
-      console.log(`error ${err}`);
-    });
+  return `${hr}hrs ${min}mins ${sec}secs`;
 }
 
-document
-  .querySelector('button')
-  .addEventListener('click', convertDecimalToTime);
+document.querySelector('button').addEventListener('click', displayConversion);
 
-function convertDecimalToTime() {
+function displayConversion() {
   const input = document.querySelector('input').value;
 
   if (input.match(/[^0-9-.]+/g)?.length >= 1) return;
 
-  console.log(Number(input));
+  const resultEl = createResultElement(convertDecimalToTime(Number(input)));
+  outputEl.innerHTML = '';
+  outputEl.appendChild(resultEl);
 }
+
+document.querySelector('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  displayConversion();
+});
