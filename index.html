@@ -28,14 +28,60 @@
     />
   </head>
   <body>
-    <h1>Decimal to Time Conversion</h1>
+    <header class="navHeader decimal-active" id="header--js">
+      <nav>
+        <ul>
+          <li id="decimal-button--js">
+            <button class="header-tab decimal-tab tab-active">Decimal to Time</button>
+          </li>
+          <li id="hour-button--js">
+            <button class="header-tab hour-tab tab-inactive">Hour counter</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-    <form>
-      <input type="text" name="" value="" placeholder="decimal value" />
-      <button type="button" name="button">Convert ✨</button>
-    </form>
-    <section id="output"></section>
-
+    <section class="decimal-section">
+      <h1 class="title">Decimal to Time Conversion</h1>
+      <form>
+        <input type="text" name="" value="" placeholder="decimal value" />
+        <button id="decimal-convert--js" class="btn" type="button" name="button">Convert ✨</button>
+      </form>
+    </section>
+    <section class="hour-section">
+      <h1 class="title">Hour Counter</h1>
+      <form class="hourCounter">
+        <label for="start-time">
+          Start:
+          <input id="start-time" type="time" name="start-time" value="00:00" />
+        </label>
+        <label for="end-time">
+          End:
+          <input id="end-time" type="time" name="end-time" value="" />
+        </label>
+      </form>
+      <div class="add-hours" id="add-hours--js">
+        <h3>Add Hours</h3>
+        <button type="button" class="btn">+8</button>
+        <button type="button" class="btn">+6</button>
+        <button type="button" class="btn">+4</button>
+      </div>
+      <form class="add-hours-form" id="add-hours-form--js">
+        <label for="add-time">
+          Add Custom hour
+          <input
+            name="add-time"
+            id="custom-time--js"
+            type="text"
+            inputmode="numeric"
+            pattern="(\d+.\d+)|(\d+)"
+            placeholder="7.5"
+          />
+        </label>
+      </form>
+    </section>
+    <section class="decimal-output" id="decimal-output"></section>
+    <section class="hour-output" id="hour-output"></section>
     <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
